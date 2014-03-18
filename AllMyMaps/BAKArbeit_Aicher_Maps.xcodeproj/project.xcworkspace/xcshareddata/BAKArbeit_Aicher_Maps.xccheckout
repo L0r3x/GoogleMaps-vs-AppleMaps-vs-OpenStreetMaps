@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>22BAB728-18E2-4D59-93EE-1AD38049CA99</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BAKArbeit_Aicher_Maps</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5D7A310A-36E7-460E-8A34-9128B06F6BA5</key>
+		<string>https://github.com/L0r3x/GoogleMaps-vs-AppleMaps-vs-OpenStreetMaps</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BAKArbeit_Aicher_Maps.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5D7A310A-36E7-460E-8A34-9128B06F6BA5</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/L0r3x/GoogleMaps-vs-AppleMaps-vs-OpenStreetMaps</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5D7A310A-36E7-460E-8A34-9128B06F6BA5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5D7A310A-36E7-460E-8A34-9128B06F6BA5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BAKArbeit-1</string>
+		</dict>
+	</array>
+</dict>
+</plist>
