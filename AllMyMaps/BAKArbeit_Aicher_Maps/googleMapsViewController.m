@@ -19,12 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Create a GMSCameraPosition that tells the map to display the
-    // coordinate 51.5, -0,127 at zoom level 6.
+    
+    //Is only for GoogleMaps to initialize the camera, in real the camera zooms immediatly to the users location
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
-
     self.googleMapsView.camera = camera;
     
     self.googleMapsView.accessibilityElementsHidden = YES;
@@ -56,9 +55,6 @@
     });
     
     self.googleMapsView.delegate = self;
-    
-//    //add gestureRecognizer for addMarker
-//    [self addGestureRecognizerToGoogleMapView];
 }
 
 - (void)dealloc {
@@ -67,7 +63,7 @@
                      context:NULL];
 }
 
-#pragma mark - KVO updates
+#pragma mark - set camera to user location
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

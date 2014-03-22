@@ -16,9 +16,6 @@
     IBOutlet UISegmentedControl *googleSegment;
 }
 
--(void) addMarkerToGoogleMap:(UIGestureRecognizer *)gestureRecognizer;
--(void) addGestureRecognizerToGoogleMapView;
-
 @property (strong, nonatomic) NSString *streetName;
 @property (strong, nonatomic) NSString *snippetInfos;
 
