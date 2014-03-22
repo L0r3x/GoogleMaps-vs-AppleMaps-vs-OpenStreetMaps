@@ -1,0 +1,144 @@
+//
+//  appleMapsViewController.m
+//  BAKArbeit_Aicher_Maps
+//
+//  Created by Michael Aicher on 26.12.13.
+//  Copyright (c) 2013 FH Technikum Wien. All rights reserved.
+//
+
+#import "appleMapsViewController.h"
+
+@interface appleMapsViewController ()
+
+@end
+
+@implementation appleMapsViewController
+
+@synthesize appleMapView, toolBar, address, streetName, subtitleInfos;
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.appleMapView setDelegate:self];
+    
+    [self addFHTWAnnotation];
+    
+    //Touch me and I will recognize you *hrhr*
+    [self addGestureRecognizerToAppleMapView];
+    
+    // I dont want to see you!
+    appleSegment.hidden = YES;
+}
+
+-(void) addFHTWAnnotation
+{
+    CLLocationCoordinate2D fHTWCoord;
+    fHTWCoord.longitude = 16.377269;
+    fHTWCoord.latitude = 48.239522;
+    
+    MKPointAnnotation *fHTW = [[MKPointAnnotation alloc] init];
+    fHTW.coordinate = fHTWCoord;
+    fHTW.title = @"FH Technikum Wien";
+    fHTW.subtitle = @"Höchstädtplatz 6";
+    
+    [self.appleMapView addAnnotation:fHTW];
+}
+
+-(void) addGestureRecognizerToAppleMapView
+{
+    UILongPressGestureRecognizer *longTouchRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addPinToAppleMap:)];
+    longTouchRecognizer.minimumPressDuration = 0.5;
+    [self.appleMapView addGestureRecognizer:longTouchRecognizer];
+}
+
+-(void) addPinToAppleMap:(UIGestureRecognizer *)gestureRecognizer
+{
+    if(gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.appleMapView];
+    CLLocationCoordinate2D touchMapCoordinate = [self.appleMapView convertPoint:touchPoint toCoordinateFromView:self.appleMapView];
+    
+    MKPointAnnotation *toAdd = [[MKPointAnnotation alloc] init];
+    toAdd.coordinate = touchMapCoordinate;
+    
+    //Reverse Geocoding Part
+    CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:toAdd.coordinate.latitude longitude:toAdd.coordinate.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:tempLocation completionHandler:
+     ^(NSArray* placemarks, NSError* error){
+         if ([placemarks count] > 0)
+         {
+             CLPlacemark *placemark = [placemarks objectAtIndex:0];
+             NSLog(@" %@",placemark.addressDictionary);
+             
+             streetName = [placemark.addressDictionary objectForKey:@"Street"];
+             subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
+
+             NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@ %@", [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
+             
+             toAdd.title = streetName;
+             toAdd.subtitle = helperForSubtitleInfos;
+
+             [self.appleMapView addAnnotation:toAdd];
+         }
+     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.appleMapView setCenterCoordinate:self.appleMapView.userLocation.location.coordinate animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+// UIToolbarButtons
+- (IBAction)deleteAllAnnotations:(id)sender
+{
+    id userAnnotation = self.appleMapView.userLocation;
+    
+    NSMutableArray *annotations = [NSMutableArray arrayWithArray:self.appleMapView.annotations];
+    [annotations removeObject:userAnnotation];
+    
+    [self.appleMapView removeAnnotations:annotations];
+}
+
+- (IBAction)zoomToMyPosition:(id)sender
+{
+    MKUserLocation *userLocation = appleMapView.userLocation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 300, 3000);
+    
+    [appleMapView setRegion:region animated:YES];
+}
+
+- (IBAction)appleMapTypePressed:(UIBarButtonItem *)sender
+{
+    appleSegment.hidden = NO;
+}
+
+- (IBAction)changeAppleMapType:(id)sender
+{
+    if (appleSegment.selectedSegmentIndex == 0)
+    {
+        appleMapView.mapType = MKMapTypeStandard;
+        appleSegment.hidden = YES;
+    }
+    if (appleSegment.selectedSegmentIndex == 1)
+    {
+        appleMapView.mapType = MKMapTypeHybrid;
+        appleSegment.hidden = YES;
+    }
+    if (appleSegment.selectedSegmentIndex == 2)
+    {
+        appleMapView.mapType = MKMapTypeSatellite;
+        appleSegment.hidden = YES;
+    }
+}
+
+@end

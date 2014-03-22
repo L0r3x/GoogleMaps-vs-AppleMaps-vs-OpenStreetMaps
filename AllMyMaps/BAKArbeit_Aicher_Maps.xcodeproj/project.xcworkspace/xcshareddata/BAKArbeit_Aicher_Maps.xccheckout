@@ -14,11 +14,11 @@
 		<string>https://github.com/L0r3x/GoogleMaps-vs-AppleMaps-vs-OpenStreetMaps</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>BAKArbeit_Aicher_Maps.xcodeproj/project.xcworkspace</string>
+	<string>AllMyMaps/BAKArbeit_Aicher_Maps.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5D7A310A-36E7-460E-8A34-9128B06F6BA5</key>
-		<string>../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/L0r3x/GoogleMaps-vs-AppleMaps-vs-OpenStreetMaps</string>
@@ -28,6 +28,14 @@
 	<string>5D7A310A-36E7-460E-8A34-9128B06F6BA5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5D7A310A-36E7-460E-8A34-9128B06F6BA5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BAKArbeit-1</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
