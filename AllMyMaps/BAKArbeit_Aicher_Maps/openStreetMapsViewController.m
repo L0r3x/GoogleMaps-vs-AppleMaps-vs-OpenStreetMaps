@@ -21,12 +21,21 @@
     [super viewDidLoad];
     [RMMapView class];
     
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//-(void) addFhTWRMMarker
+//{
+//    CLLocationCoordinate2D fHTWCoord;
+//    fHTWCoord.longitude = 16.377269;
+//    fHTWCoord.latitude = 48.239522;
+//    
+//    RMMarker *fHTW = [[MKPointAnnotation alloc] init];
+//    fHTW.coordinate = fHTWCoord;
+//    fHTW.title = @"FH Technikum Wien";
+//    fHTW.subtitle = @"Höchstädtplatz 6";
+//    
+//    [self.appleMapView addAnnotation:fHTW];
+//}
 
 @end

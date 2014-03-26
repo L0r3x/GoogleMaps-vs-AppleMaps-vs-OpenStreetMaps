@@ -81,14 +81,23 @@
 
 -(void) addFHTWMarker
 {
-    CLLocationCoordinate2D fHTWCoord = CLLocationCoordinate2DMake(48.239522, 16.377269);
-    
+    //Marker FH Gebäude alt
+    CLLocationCoordinate2D fHTWCoord = CLLocationCoordinate2DMake(48.239480, 16.377915);
     GMSMarker *fHTW = [[GMSMarker alloc] init];
+    fHTW.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
     fHTW.position = fHTWCoord;
-    fHTW.title = @"FH Technikum Wien";
+    fHTW.title = @"FH Technikum Wien A-Gebäude";
     fHTW.snippet = @"Höchstädtplatz 6";
-    
     fHTW.map = self.googleMapsView;
+    
+    //Marker FH Gebäude neu
+    CLLocationCoordinate2D fhTWCoordNew = CLLocationCoordinate2DMake(48.239344, 16.377177);
+    GMSMarker *fhTWNew = [[GMSMarker alloc] init];
+    fhTWNew.position = fhTWCoordNew;
+    fhTWNew.icon = [UIImage imageNamed:@"mapMarker"];
+    fhTWNew.title = @"FH Technikum Wien F-Gebäude";
+    fhTWNew.snippet = @"Höchstädtplatz 6";
+    fhTWNew.map = self.googleMapsView;
 }
 
 -(void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
@@ -112,8 +121,13 @@
 
 - (IBAction)googleMapTypePressed:(UIBarButtonItem *)sender
 {
-    //googleSegment.superview;
-    googleSegment.hidden = NO;
+    if(googleSegment.hidden == YES)
+    {
+        googleSegment.hidden = NO;
+    }else
+    {
+        googleSegment.hidden = YES;
+    }
 }
 
 - (IBAction)changeGoogleMapType:(id)sender
@@ -138,6 +152,12 @@
         self.googleMapsView.mapType = kGMSTypeTerrain;
         googleSegment.hidden = YES;
     }
+}
+
+- (IBAction)deleteAllMarkers:(id)sender
+{
+    [self.googleMapsView clear];
+    [self addFHTWMarker];
 }
 
 @end

@@ -22,6 +22,7 @@
     [self.appleMapView setDelegate:self];
     
     [self addFHTWAnnotation];
+    [self addUserAnnotation];
     
     //Touch me and I will recognize you *hrhr*
     [self addGestureRecognizerToAppleMapView];
@@ -42,6 +43,35 @@
     fHTW.subtitle = @"Höchstädtplatz 6";
     
     [self.appleMapView addAnnotation:fHTW];
+}
+
+#warning funktioniert ned!!!
+
+-(void) addUserAnnotation
+{
+    MKPointAnnotation *userAnnotation = [[MKPointAnnotation alloc] init];
+    userAnnotation.coordinate = self.appleMapView.userLocation.location.coordinate;
+    //Reverse Geocoding Part
+    CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:userAnnotation.coordinate.latitude longitude:userAnnotation.coordinate.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:tempLocation completionHandler:
+     ^(NSArray* placemarks, NSError* error){
+         if ([placemarks count] > 0)
+         {
+             CLPlacemark *placemark = [placemarks objectAtIndex:0];
+             NSLog(@" %@",placemark.addressDictionary);
+             
+             streetName = [placemark.addressDictionary objectForKey:@"Street"];
+             subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
+             
+             NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@, %@ %@", streetName, [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
+             
+             userAnnotation.title = @"You are currently at: ";
+             userAnnotation.subtitle = helperForSubtitleInfos;
+             
+             [self.appleMapView addAnnotation:userAnnotation];
+         }
+     }];
 }
 
 -(void) addGestureRecognizerToAppleMapView
@@ -107,19 +137,24 @@
     [annotations removeObject:userAnnotation];
     
     [self.appleMapView removeAnnotations:annotations];
+    [self addFHTWAnnotation];
 }
 
 - (IBAction)zoomToMyPosition:(id)sender
 {
     MKUserLocation *userLocation = appleMapView.userLocation;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 300, 3000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 300, 300);
     
     [appleMapView setRegion:region animated:YES];
 }
 
 - (IBAction)appleMapTypePressed:(UIBarButtonItem *)sender
 {
-    appleSegment.hidden = NO;
+    if(appleSegment.hidden == YES)
+    {
+        appleSegment.hidden = NO;
+    }else
+        appleSegment.hidden = YES;
 }
 
 - (IBAction)changeAppleMapType:(id)sender

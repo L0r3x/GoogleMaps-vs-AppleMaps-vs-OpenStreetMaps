@@ -51,13 +51,18 @@
                                             <action selector="googleMapTypePressed:" destination="CZ4-MO-1fc" id="sVf-S9-8HO"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem image="Trash-icon" id="fU1-CA-XvL">
+                                        <connections>
+                                            <action selector="deleteAllMarkers:" destination="CZ4-MO-1fc" id="dJK-Rm-MfC"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" cocoaTouchSystemColor="lightTextColor"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="GoogleMaps" image="first" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" title="GoogleMaps" image="Google-Maps-icon" id="u1e-5L-l1D"/>
                     <connections>
                         <outlet property="googleMapsView" destination="Te7-wd-6oN" id="lxt-I9-voF"/>
                         <outlet property="googleSegment" destination="7UL-Lx-zar" id="TDz-Qw-Cb3"/>
@@ -144,12 +149,12 @@
                                             <action selector="appleMapTypePressed:" destination="QUy-BD-bpt" id="fSg-n5-YmZ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="My Position" id="YUx-x8-G43" customClass="MKUserTrackingBarButtonItem">
+                                    <barButtonItem image="Location-Map-icon" id="YUx-x8-G43" customClass="MKUserTrackingBarButtonItem">
                                         <connections>
                                             <action selector="zoomToMyPosition:" destination="QUy-BD-bpt" id="lHA-gl-zKP"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Delete" id="xCs-rV-zQl">
+                                    <barButtonItem image="Trash-icon" id="xCs-rV-zQl">
                                         <connections>
                                             <action selector="deleteAllAnnotations:" destination="QUy-BD-bpt" id="fjL-Qu-lgb"/>
                                         </connections>
@@ -174,7 +179,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AppleMaps" image="second" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" title="AppleMaps" image="apple-icon" id="Z7h-1E-pvt"/>
                     <connections>
                         <outlet property="appleMapView" destination="wmP-EE-aX5" id="Y7u-ub-wSA"/>
                         <outlet property="appleSegment" destination="p4Z-x3-oqU" id="915-Nf-OSD"/>
@@ -207,8 +212,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Google-Maps-icon" width="48" height="48"/>
+        <image name="Location-Map-icon" width="32" height="32"/>
+        <image name="Trash-icon" width="48" height="48"/>
+        <image name="apple-icon" width="48" height="48"/>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

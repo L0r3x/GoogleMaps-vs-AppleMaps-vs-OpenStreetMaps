@@ -24,5 +24,6 @@
 - (IBAction)googleMapTypePressed:(UIBarButtonItem *)sender;
 - (IBAction)changeGoogleMapType:(id)sender;
 
+- (IBAction)deleteAllMarkers:(id)sender;
 
 @end
