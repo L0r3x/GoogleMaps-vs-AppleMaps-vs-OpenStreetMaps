@@ -130,6 +130,7 @@
 		2ADF425618A5111500D5D618 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		2ADF425818A5112300D5D618 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2ADF425A18A5113100D5D618 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		2AF8AD3718E5A3E80001DF11 /* GoogleMaps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMaps.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +232,7 @@
 		0BB8F0C2186C7B83000BD677 /* BAKArbeit_Aicher_Maps */ = {
 			isa = PBXGroup;
 			children = (
+				2AF8AD3718E5A3E80001DF11 /* GoogleMaps.h */,
 				0BB8F0CB186C7B83000BD677 /* mapsAppDelegate.h */,
 				0BB8F0CC186C7B83000BD677 /* mapsAppDelegate.m */,
 				0BB8F0CE186C7B83000BD677 /* Main.storyboard */,
