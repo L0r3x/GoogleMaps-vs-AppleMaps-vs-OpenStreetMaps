@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "RMMapView.h"
 
+#import "RMMarkerManager.h"
+#import "RMMarker.h"
+
 @interface openStreetMapsViewController : UIViewController <RMMapViewDelegate>
 {
     IBOutlet RMMapView *openStreetMapView;
+    IBOutlet UISegmentedControl *openStreetMapSegment;
 }
 
 @property (strong, nonatomic) IBOutlet RMMapView *openStreetMapView;
+
+
+- (IBAction)openStreetMapTypePressed:(UIBarButtonItem *)sender;
+//- (IBAction)changeOpenStreetMapType:(id)sender;
 
 @end

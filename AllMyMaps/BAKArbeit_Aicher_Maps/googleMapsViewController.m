@@ -37,6 +37,9 @@
     //floor picker is enabled
     self.googleMapsView.settings.indoorPicker = YES;
     
+    // Enables Traffic Data
+    googleMapsView.trafficEnabled = YES;
+    
     //Creates a marker in the center of the map.
     [self addFHTWMarker];
     
@@ -113,6 +116,8 @@
             GMSMarker *addMarker = [GMSMarker markerWithPosition:coordinate];
             addMarker.title = result.addressLine1;
             addMarker.snippet = result.addressLine2;
+            addMarker.draggable = YES;
+            addMarker.appearAnimation = YES;
             addMarker.map = mapView;
         }
     };

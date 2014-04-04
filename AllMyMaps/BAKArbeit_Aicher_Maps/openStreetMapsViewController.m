@@ -7,6 +7,7 @@
 //
 
 #import "openStreetMapsViewController.h"
+#import "RMPath.h"
 
 @interface openStreetMapsViewController ()
 
@@ -19,10 +20,50 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [RMMapView class];
+//    [RMMapView class];
+    [openStreetMapView setDelegate:self];
     
+    RMMapContents *contents = self.openStreetMapView.contents;
+    CLLocationCoordinate2D mapCenter = [contents mapCenter];
     
+    mapCenter.latitude = 66.44;
+	mapCenter.longitude = -179.0;
+    
+    [self.view addSubview:openStreetMapView];
+    
+	[openStreetMapView moveToLatLong:mapCenter];
+
+    [openStreetMapView.contents setZoom:6.0];
+    
+    [[openStreetMapView contents] moveBy:CGSizeMake(-5.0, 0.0)];
+    
+    CLLocationCoordinate2D markerPosition;
+    
+	markerPosition.latitude = 48.239522;
+    markerPosition.longitude = 16.377269;
+    
+    RMMarker *fhTWMarker;
+    
+    [fhTWMarker changeLabelUsingText:[NSString stringWithFormat:@"%4.1f", markerPosition.longitude]];
+    
+    [self.openStreetMapView.contents.markerManager addMarker:fhTWMarker AtLatLong:markerPosition];
+    
+    openStreetMapSegment.hidden = YES;
 }
+
+//- (void)addFHTWRMMarker
+//{
+//	CLLocationCoordinate2D markerPosition;
+//
+//	markerPosition.latitude = 48.239522;
+//    markerPosition.longitude = 16.377269;
+//    
+//    RMMarker *fhTWMarker;
+//    
+//    [self.openStreetMapView.contents.markerManager addMarker:fhTWMarker
+//                                                 AtLatLong:markerPosition];
+//    [fhTWMarker changeLabelUsingText:[NSString stringWithFormat:@"%4.1f", markerPosition.longitude]];
+//}
 
 //-(void) addFhTWRMMarker
 //{
@@ -38,4 +79,19 @@
 //    [self.appleMapView addAnnotation:fHTW];
 //}
 
+- (IBAction)openStreetMapTypePressed:(UIBarButtonItem *)sender
+{
+    if(openStreetMapSegment.hidden == YES)
+    {
+        openStreetMapSegment.hidden = NO;
+    }else
+    {
+        openStreetMapSegment.hidden = YES;
+    }
+}
+
+//- (IBAction)changeOpenStreetMapType:(id)sender
+//{
+//    
+//}
 @end

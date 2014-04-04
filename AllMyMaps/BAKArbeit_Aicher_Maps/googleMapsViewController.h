@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 FH Technikum Wien. All rights reserved.
 //
 
-#import "googleMapsView.h"
 #import "GoogleMaps.h"
 #import <UIKit/UIKit.h>
 

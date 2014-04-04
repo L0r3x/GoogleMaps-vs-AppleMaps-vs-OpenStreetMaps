@@ -7,7 +7,7 @@
 //
 
 #import "mapsAppDelegate.h"
-#import "GoogleMaps.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation mapsAppDelegate
 

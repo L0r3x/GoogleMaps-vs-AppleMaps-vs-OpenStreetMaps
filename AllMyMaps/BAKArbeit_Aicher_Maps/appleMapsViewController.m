@@ -10,6 +10,8 @@
 
 @interface appleMapsViewController ()
 
+@property (nonatomic) BOOL fhTWAnnotationIsSet;
+
 @end
 
 @implementation appleMapsViewController
@@ -21,8 +23,10 @@
     [super viewDidLoad];
     [self.appleMapView setDelegate:self];
     
+    self.fhTWAnnotationIsSet = NO;
+    
     [self addFHTWAnnotation];
-    [self addUserAnnotation];
+//    [self addUserAnnotation];
     
     //Touch me and I will recognize you *hrhr*
     [self addGestureRecognizerToAppleMapView];
@@ -33,6 +37,7 @@
 
 -(void) addFHTWAnnotation
 {
+    self.fhTWAnnotationIsSet = YES;
     CLLocationCoordinate2D fHTWCoord;
     fHTWCoord.longitude = 16.377269;
     fHTWCoord.latitude = 48.239522;
@@ -41,38 +46,39 @@
     fHTW.coordinate = fHTWCoord;
     fHTW.title = @"FH Technikum Wien";
     fHTW.subtitle = @"Höchstädtplatz 6";
-    
+
     [self.appleMapView addAnnotation:fHTW];
 }
 
 #warning funktioniert ned!!!
 
--(void) addUserAnnotation
-{
-    MKPointAnnotation *userAnnotation = [[MKPointAnnotation alloc] init];
-    userAnnotation.coordinate = self.appleMapView.userLocation.location.coordinate;
-    //Reverse Geocoding Part
-    CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:userAnnotation.coordinate.latitude longitude:userAnnotation.coordinate.longitude];
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:tempLocation completionHandler:
-     ^(NSArray* placemarks, NSError* error){
-         if ([placemarks count] > 0)
-         {
-             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-             NSLog(@" %@",placemark.addressDictionary);
-             
-             streetName = [placemark.addressDictionary objectForKey:@"Street"];
-             subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
-             
-             NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@, %@ %@", streetName, [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
-             
-             userAnnotation.title = @"You are currently at: ";
-             userAnnotation.subtitle = helperForSubtitleInfos;
-             
-             [self.appleMapView addAnnotation:userAnnotation];
-         }
-     }];
-}
+//-(void) addUserAnnotation
+//{
+//    
+//    MKPointAnnotation *userAnnotation = [[MKPointAnnotation alloc] init];
+//    userAnnotation.coordinate = self.appleMapView.userLocation.location.coordinate;
+//    //Reverse Geocoding Part
+//    CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:userAnnotation.coordinate.latitude longitude:userAnnotation.coordinate.longitude];
+//    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//    [geocoder reverseGeocodeLocation:tempLocation completionHandler:
+//     ^(NSArray* placemarks, NSError* error){
+//         if ([placemarks count] > 0)
+//         {
+//             CLPlacemark *placemark = [placemarks objectAtIndex:0];
+//             NSLog(@" %@",placemark.addressDictionary);
+//             
+//             streetName = [placemark.addressDictionary objectForKey:@"Street"];
+//             subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
+//             
+//             NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@, %@ %@", streetName, [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
+//             
+//             userAnnotation.title = @"You are currently at: ";
+//             userAnnotation.subtitle = helperForSubtitleInfos;
+//             
+//             [self.appleMapView addAnnotation:userAnnotation];
+//         }
+//     }];
+//}
 
 -(void) addGestureRecognizerToAppleMapView
 {
@@ -110,9 +116,46 @@
              toAdd.title = streetName;
              toAdd.subtitle = helperForSubtitleInfos;
 
+             self.fhTWAnnotationIsSet = NO;
              [self.appleMapView addAnnotation:toAdd];
          }
      }];
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    static NSString *identifier = @"myAnnotation";
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.appleMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (!annotationView)
+    {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        if((self.fhTWAnnotationIsSet == YES) && ([[annotation title] isEqualToString:@"FH Technikum Wien"]))
+        {
+            annotationView.animatesDrop = NO;
+            annotationView.draggable = NO;
+            annotationView.pinColor = MKPinAnnotationColorRed;
+            self.fhTWAnnotationIsSet = NO;
+        }
+        else
+        {
+            annotationView.pinColor = MKPinAnnotationColorGreen;
+            annotationView.animatesDrop = YES;
+            annotationView.canShowCallout = YES;
+            annotationView.image = [UIImage imageNamed:@"hugo"];
+            annotationView.draggable = YES;
+            self.fhTWAnnotationIsSet = NO;
+        }
+    }
+    else
+    {
+        self.fhTWAnnotationIsSet = NO;
+        annotationView.annotation = annotation;
+    }
+    self.fhTWAnnotationIsSet = NO;
+    return annotationView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
