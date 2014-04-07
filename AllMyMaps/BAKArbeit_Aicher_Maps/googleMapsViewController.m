@@ -73,12 +73,12 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     if (!firstLocationUpdate) {
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
+        // If the first location update has not yet been recieved, then jump to that location.
         firstLocationUpdate = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         self.googleMapsView.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
                                                          zoom:14];
+        NSLog(@"test");
     }
 }
 
@@ -117,7 +117,7 @@
             addMarker.title = result.addressLine1;
             addMarker.snippet = result.addressLine2;
             addMarker.draggable = YES;
-            addMarker.appearAnimation = YES;
+            addMarker.appearAnimation = kGMSMarkerAnimationPop;
             addMarker.map = mapView;
         }
     };

@@ -122,6 +122,44 @@
      }];
 }
 
+- (void) performSearch {
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = _searchText.text;
+    request.region = self.appleMapView.region;
+    
+    _matchingItems = [[NSMutableArray alloc] init];
+    
+    MKLocalSearch *search =
+    [[MKLocalSearch alloc]initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse
+                                         *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"No Matches");
+        else
+            for (MKMapItem *item in response.mapItems)
+            {
+                [_matchingItems addObject:item];
+                MKPointAnnotation *annotation =
+                [[MKPointAnnotation alloc]init];
+                annotation.coordinate = item.placemark.coordinate;
+                annotation.title = item.name;
+                [self.appleMapView addAnnotation:annotation];
+            }
+    }];
+}
+
+#pragma open Maps in Karten App --> not used
+-(void)displayRegionCenteredOnMapItem:(MKMapItem*)from{
+	CLLocation* fromLocation = from.placemark.location;
+	MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 1000, 1000);
+    //Open item in Maps, specifying the map region to display
+    [MKMapItem openMapsWithItems:[NSArray arrayWithObject:from]
+                   launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSValue valueWithMKCoordinate:region.center], MKLaunchOptionsMapCenterKey,
+                                  [NSValue valueWithMKCoordinateSpan:region.span], MKLaunchOptionsMapSpanKey, nil]];
+}
+
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     if([annotation isKindOfClass:[MKUserLocation class]])

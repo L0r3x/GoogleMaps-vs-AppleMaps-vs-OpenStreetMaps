@@ -26,6 +26,9 @@
 @property (strong, nonatomic) IBOutlet MKMapView *appleMapView;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
 
+@property (strong, nonatomic) NSMutableArray *matchingItems;
+@property (strong, nonatomic) IBOutlet UITextField *searchText;
+
 - (IBAction)deleteAllAnnotations:(id)sender;
 
 - (IBAction)zoomToMyPosition:(id)sender;

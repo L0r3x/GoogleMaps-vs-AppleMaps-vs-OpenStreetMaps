@@ -15,7 +15,7 @@
 
 @implementation openStreetMapsViewController
 
-@synthesize openStreetMapView;
+@synthesize openStreetMapView, locationMarker;
 
 - (void)viewDidLoad
 {
@@ -26,8 +26,8 @@
     RMMapContents *contents = self.openStreetMapView.contents;
     CLLocationCoordinate2D mapCenter = [contents mapCenter];
     
-    mapCenter.latitude = 66.44;
-	mapCenter.longitude = -179.0;
+    mapCenter.latitude = 48.239522;
+	mapCenter.longitude = 16.377269;
     
     [self.view addSubview:openStreetMapView];
     
@@ -38,46 +38,22 @@
     [[openStreetMapView contents] moveBy:CGSizeMake(-5.0, 0.0)];
     
     CLLocationCoordinate2D markerPosition;
-    
 	markerPosition.latitude = 48.239522;
     markerPosition.longitude = 16.377269;
     
-    RMMarker *fhTWMarker;
-    
-    [fhTWMarker changeLabelUsingText:[NSString stringWithFormat:@"%4.1f", markerPosition.longitude]];
-    
-    [self.openStreetMapView.contents.markerManager addMarker:fhTWMarker AtLatLong:markerPosition];
+    UIImage *iconImage = [UIImage imageNamed:@"mapMarker"];
+    locationMarker = [[RMMarker alloc] initWithUIImage: iconImage];
+    [openStreetMapView.contents.markerManager addMarker:locationMarker AtLatLong: markerPosition];
+
+//for offline Maps
+//    openStreetMapView.contents.minZoom = 15.f;
+//    openStreetMapView.contents.maxZoom = 17.f;
+//    openStreetMapView.contents.zoom = 16.5;
+//    NSURL *tileSetURL = [[NSBundle mainBundle] URLForResource:@"offlineMap.mbtiles" withExtension:@"mbtiles"];
+//    openStreetMapView.contents.tileSource = [[RMMBTilesTileSource alloc] initWithTileSetURL: tileSetURL];
     
     openStreetMapSegment.hidden = YES;
 }
-
-//- (void)addFHTWRMMarker
-//{
-//	CLLocationCoordinate2D markerPosition;
-//
-//	markerPosition.latitude = 48.239522;
-//    markerPosition.longitude = 16.377269;
-//    
-//    RMMarker *fhTWMarker;
-//    
-//    [self.openStreetMapView.contents.markerManager addMarker:fhTWMarker
-//                                                 AtLatLong:markerPosition];
-//    [fhTWMarker changeLabelUsingText:[NSString stringWithFormat:@"%4.1f", markerPosition.longitude]];
-//}
-
-//-(void) addFhTWRMMarker
-//{
-//    CLLocationCoordinate2D fHTWCoord;
-//    fHTWCoord.longitude = 16.377269;
-//    fHTWCoord.latitude = 48.239522;
-//    
-//    RMMarker *fHTW = [[MKPointAnnotation alloc] init];
-//    fHTW.coordinate = fHTWCoord;
-//    fHTW.title = @"FH Technikum Wien";
-//    fHTW.subtitle = @"Höchstädtplatz 6";
-//    
-//    [self.appleMapView addAnnotation:fHTW];
-//}
 
 - (IBAction)openStreetMapTypePressed:(UIBarButtonItem *)sender
 {

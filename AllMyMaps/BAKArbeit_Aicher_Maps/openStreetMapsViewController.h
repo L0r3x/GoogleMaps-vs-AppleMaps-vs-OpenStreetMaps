@@ -11,6 +11,7 @@
 
 #import "RMMarkerManager.h"
 #import "RMMarker.h"
+#import "RMMBTilesTileSource.h"
 
 @interface openStreetMapsViewController : UIViewController <RMMapViewDelegate>
 {
@@ -19,6 +20,8 @@
 }
 
 @property (strong, nonatomic) IBOutlet RMMapView *openStreetMapView;
+
+@property (nonatomic, retain) RMMarker *locationMarker;
 
 
 - (IBAction)openStreetMapTypePressed:(UIBarButtonItem *)sender;
