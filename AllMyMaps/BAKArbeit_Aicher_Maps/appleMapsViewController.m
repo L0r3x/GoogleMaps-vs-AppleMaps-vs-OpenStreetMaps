@@ -16,7 +16,7 @@
 
 @implementation appleMapsViewController
 
-@synthesize appleMapView, toolBar, address, streetName, subtitleInfos;
+@synthesize appleMapView, address, streetName, subtitleInfos;
 
 - (void)viewDidLoad
 {
@@ -200,16 +200,19 @@
 {
     [super viewDidAppear:animated];
     
+    //center of Map is User Location
     [self.appleMapView setCenterCoordinate:self.appleMapView.userLocation.location.coordinate animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+
+// Buttons
+- (IBAction)textFieldReturn:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [sender resignFirstResponder];
+    [self.appleMapView removeAnnotations:[self.appleMapView annotations]];
+    [self performSearch];
 }
 
-// UIToolbarButtons
 - (IBAction)deleteAllAnnotations:(id)sender
 {
     id userAnnotation = self.appleMapView.userLocation;
@@ -218,7 +221,6 @@
     [annotations removeObject:userAnnotation];
     
     [self.appleMapView removeAnnotations:annotations];
-    [self addFHTWAnnotation];
 }
 
 - (IBAction)zoomToMyPosition:(id)sender

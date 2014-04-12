@@ -52,22 +52,6 @@
 //    NSURL *tileSetURL = [[NSBundle mainBundle] URLForResource:@"offlineMap.mbtiles" withExtension:@"mbtiles"];
 //    openStreetMapView.contents.tileSource = [[RMMBTilesTileSource alloc] initWithTileSetURL: tileSetURL];
     
-    openStreetMapSegment.hidden = YES;
 }
 
-- (IBAction)openStreetMapTypePressed:(UIBarButtonItem *)sender
-{
-    if(openStreetMapSegment.hidden == YES)
-    {
-        openStreetMapSegment.hidden = NO;
-    }else
-    {
-        openStreetMapSegment.hidden = YES;
-    }
-}
-
-//- (IBAction)changeOpenStreetMapType:(id)sender
-//{
-//    
-//}
 @end

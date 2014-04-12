@@ -24,10 +24,10 @@
 @property (strong, nonatomic) NSString *subtitleInfos;
 
 @property (strong, nonatomic) IBOutlet MKMapView *appleMapView;
-@property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
 
 @property (strong, nonatomic) NSMutableArray *matchingItems;
 @property (strong, nonatomic) IBOutlet UITextField *searchText;
+- (IBAction)textFieldReturn:(id)sender;
 
 - (IBAction)deleteAllAnnotations:(id)sender;
 

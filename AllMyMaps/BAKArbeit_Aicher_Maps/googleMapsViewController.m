@@ -159,6 +159,19 @@
     }
 }
 
+- (IBAction)toogleTrafficSwitch:(UISwitch *)sender
+{
+    if([sender isOn])
+    {
+        // Enables Traffic Data
+        googleMapsView.trafficEnabled = YES;
+    }
+    else
+    {
+        googleMapsView.trafficEnabled = NO;
+    }
+}
+
 - (IBAction)deleteAllMarkers:(id)sender
 {
     [self.googleMapsView clear];

@@ -24,6 +24,8 @@
 - (IBAction)googleMapTypePressed:(UIBarButtonItem *)sender;
 - (IBAction)changeGoogleMapType:(id)sender;
 
+- (IBAction)toogleTrafficSwitch:(UISwitch *)sender;
+
 - (IBAction)deleteAllMarkers:(id)sender;
 
 @end
