@@ -26,7 +26,7 @@
 #import <GoogleMaps/GMSIndoorLevel.h>
 #import <GoogleMaps/GMSMapLayer.h>
 #import <GoogleMaps/GMSMapView+Animation.h>
-#import <GoogleMaps/GMSMapView+Overlays.h>
+//#import <GoogleMaps/GMSMapView+Overlays.h>
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GMSMarker.h>
 #import <GoogleMaps/GMSMarkerLayer.h>

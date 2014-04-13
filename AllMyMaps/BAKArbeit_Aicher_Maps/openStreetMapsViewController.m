@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [RMMapView class];
+//    [RMMapView class];
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -96,9 +96,10 @@
     }
 }
 
+//is working with no functionality!
 - (IBAction)changeOpenStreetMapType:(id)sender
 {
-    id <RMTileSource> tileSource;
+//    id <RMTileSource> tileSource;
 
 	if(openStreetSegment.selectedSegmentIndex == 0)
     {
@@ -109,9 +110,10 @@
     if(openStreetSegment.selectedSegmentIndex == 1)
     {
 //        tileSource = [[RMOpenCycleMapSource] init];
-        [[openStreetMapView contents] setTileSource:tileSource];
+//        [[openStreetMapView contents] setTileSource:tileSource];
         openStreetSegment.hidden = YES;
     }
+#warning if you're using offline Map you will not see any map and have to restart the app-> it's not working and i don't know why-.-
     if(openStreetSegment.selectedSegmentIndex == 2)
     {
 //        RMDBMapSource *offlineMap = [[RMDBMapSource alloc] initWithPath:@"Philadelphia.mbtiles"];

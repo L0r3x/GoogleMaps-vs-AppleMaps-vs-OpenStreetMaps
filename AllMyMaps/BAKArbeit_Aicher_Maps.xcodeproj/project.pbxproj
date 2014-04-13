@@ -36,9 +36,9 @@
 		0BB8F118186DD376000BD677 /* googleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB8F117186DD376000BD677 /* googleMapsViewController.m */; };
 		0BB8F11B186DD3FF000BD677 /* appleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB8F11A186DD3FF000BD677 /* appleMapsViewController.m */; };
 		0BB8F11E186DF3E3000BD677 /* openStreetMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB8F11D186DF3E3000BD677 /* openStreetMapsViewController.m */; };
+		2A0A33B218FB5143009222CD /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0A33B118FB5143009222CD /* GoogleMaps.framework */; };
 		2A85938018A5A8D500270441 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85937F18A5A8D500270441 /* libsqlite3.0.dylib */; };
 		2A85938218A5A91800270441 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85938118A5A91800270441 /* CoreFoundation.framework */; };
-		2A8593D518A6A8EC00270441 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8593D418A6A8EC00270441 /* GoogleMaps.framework */; };
 		2A8593D718A6A90900270441 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A8593D618A6A90900270441 /* GoogleMaps.bundle */; };
 		2A8593E918A6ABC300270441 /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8593E218A6AB6900270441 /* libMapView.a */; };
 		2AAB12D418F990C3002C5185 /* forwardGeocodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB12D318F990C2002C5185 /* forwardGeocodingViewController.m */; };
@@ -122,9 +122,9 @@
 		0BB8F11A186DD3FF000BD677 /* appleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = appleMapsViewController.m; sourceTree = "<group>"; };
 		0BB8F11C186DF3E3000BD677 /* openStreetMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openStreetMapsViewController.h; sourceTree = "<group>"; };
 		0BB8F11D186DF3E3000BD677 /* openStreetMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = openStreetMapsViewController.m; sourceTree = "<group>"; };
+		2A0A33B118FB5143009222CD /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2A85937F18A5A8D500270441 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		2A85938118A5A91800270441 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		2A8593D418A6A8EC00270441 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2A8593D618A6A90900270441 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		2A8593D818A6AB6800270441 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "../route-me-master/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
 		2AAB12D218F990C2002C5185 /* forwardGeocodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwardGeocodingViewController.h; sourceTree = "<group>"; };
@@ -133,7 +133,6 @@
 		2ADF425618A5111500D5D618 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		2ADF425818A5112300D5D618 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2ADF425A18A5113100D5D618 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		2AF8AD3718E5A3E80001DF11 /* GoogleMaps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMaps.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,10 +159,10 @@
 				0BB8F0FB186C80A5000BD677 /* CoreLocation.framework in Frameworks */,
 				0BB8F0F9186C8097000BD677 /* CoreData.framework in Frameworks */,
 				0BB8F0F7186C8089000BD677 /* AVFoundation.framework in Frameworks */,
-				2A8593D518A6A8EC00270441 /* GoogleMaps.framework in Frameworks */,
 				0BB8F0BF186C7B83000BD677 /* CoreGraphics.framework in Frameworks */,
 				0BB8F0C1186C7B83000BD677 /* UIKit.framework in Frameworks */,
 				0BB8F0BD186C7B82000BD677 /* Foundation.framework in Frameworks */,
+				2A0A33B218FB5143009222CD /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +203,8 @@
 		0BB8F0BB186C7B82000BD677 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A0A33B118FB5143009222CD /* GoogleMaps.framework */,
 				2A8593D618A6A90900270441 /* GoogleMaps.bundle */,
-				2A8593D418A6A8EC00270441 /* GoogleMaps.framework */,
 				2A85938118A5A91800270441 /* CoreFoundation.framework */,
 				2A85937F18A5A8D500270441 /* libsqlite3.0.dylib */,
 				2ADF425A18A5113100D5D618 /* CFNetwork.framework */,
@@ -237,7 +236,6 @@
 			children = (
 				2AAB12D218F990C2002C5185 /* forwardGeocodingViewController.h */,
 				2AAB12D318F990C2002C5185 /* forwardGeocodingViewController.m */,
-				2AF8AD3718E5A3E80001DF11 /* GoogleMaps.h */,
 				0BB8F0CB186C7B83000BD677 /* mapsAppDelegate.h */,
 				0BB8F0CC186C7B83000BD677 /* mapsAppDelegate.m */,
 				0BB8F0CE186C7B83000BD677 /* Main.storyboard */,
@@ -569,6 +567,7 @@
 					/Users/michaelaicher/Desktop/BAKArbeit_Aicher_Maps,
 					"/Users/fyayc/Documents/BAKArbeit-1",
 					"/Users/fyayc/Documents/BAKArbeit-1/AllMyMaps",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BAKArbeit_Aicher_Maps/BAKArbeit_Aicher_Maps-Prefix.pch";
@@ -602,6 +601,7 @@
 					/Users/michaelaicher/Desktop/BAKArbeit_Aicher_Maps,
 					"/Users/fyayc/Documents/BAKArbeit-1",
 					"/Users/fyayc/Documents/BAKArbeit-1/AllMyMaps",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BAKArbeit_Aicher_Maps/BAKArbeit_Aicher_Maps-Prefix.pch";

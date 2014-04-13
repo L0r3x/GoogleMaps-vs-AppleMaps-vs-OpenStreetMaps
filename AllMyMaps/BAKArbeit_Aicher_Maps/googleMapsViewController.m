@@ -78,7 +78,6 @@
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         self.googleMapsView.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
                                                          zoom:14];
-        NSLog(@"test");
     }
 }
 
