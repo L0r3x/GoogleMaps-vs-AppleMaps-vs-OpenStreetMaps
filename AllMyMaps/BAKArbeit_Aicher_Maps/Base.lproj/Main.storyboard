@@ -111,21 +111,59 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUa-1D-RMy" customClass="RMMapView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDQ-B5-n2S">
+                                        <rect key="frame" x="260" y="403" width="40" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="qek-5a-SAu"/>
+                                        </constraints>
+                                        <state key="normal" image="Location-Map-icon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="zoomToUserLocation:" destination="bj1-FM-ejn" eventType="touchUpInside" id="9O0-Fr-3ZT"/>
+                                        </connections>
+                                    </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TKM-Wl-MWu">
+                                        <rect key="frame" x="20" y="20" width="280" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="OpenStreetMap"/>
+                                            <segment title="OpenCycleMap"/>
+                                            <segment title="OfflineMap"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="changeOpenStreetMapType:" destination="bj1-FM-ejn" eventType="valueChanged" id="yUj-ni-bxB"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="HDQ-B5-n2S" secondAttribute="bottom" constant="20" symbolic="YES" id="4YV-bS-A9V"/>
+                                    <constraint firstAttribute="trailing" secondItem="HDQ-B5-n2S" secondAttribute="trailing" constant="20" symbolic="YES" id="dJY-tb-GcI"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="B0V-ya-WdX" firstAttribute="top" secondItem="HUa-1D-RMy" secondAttribute="bottom" id="f72-e9-Ckn"/>
-                            <constraint firstItem="HUa-1D-RMy" firstAttribute="top" secondItem="DlS-s7-kSP" secondAttribute="bottom" id="iBf-ty-xoI"/>
-                            <constraint firstItem="HUa-1D-RMy" firstAttribute="leading" secondItem="mII-xV-sPE" secondAttribute="leading" id="jq8-1c-zVx"/>
-                            <constraint firstAttribute="trailing" secondItem="HUa-1D-RMy" secondAttribute="trailing" id="rHH-fH-1D8"/>
+                            <constraint firstItem="B0V-ya-WdX" firstAttribute="top" secondItem="HUa-1D-RMy" secondAttribute="bottom" id="Ulh-2E-F55"/>
+                            <constraint firstItem="HUa-1D-RMy" firstAttribute="top" secondItem="DlS-s7-kSP" secondAttribute="bottom" id="bxL-nu-imn"/>
+                            <constraint firstAttribute="trailing" secondItem="HUa-1D-RMy" secondAttribute="trailing" id="rGW-r2-dVo"/>
+                            <constraint firstItem="HUa-1D-RMy" firstAttribute="leading" secondItem="mII-xV-sPE" secondAttribute="leading" id="wTG-VT-N6i"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="OpenStreetMaps" image="first" id="zxa-6O-Fo1"/>
-                    <navigationItem key="navigationItem" id="zr1-mg-ZQB"/>
+                    <navigationItem key="navigationItem" id="zr1-mg-ZQB">
+                        <barButtonItem key="leftBarButtonItem" title="Typ" id="ovx-So-ZzO">
+                            <connections>
+                                <action selector="openStreetMapTypePressed:" destination="bj1-FM-ejn" id="7cy-wk-FHk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="openStreetMapView" destination="HUa-1D-RMy" id="ywk-yF-9gI"/>
+                        <outlet property="openStreetSegment" destination="TKM-Wl-MWu" id="94W-Zy-3GA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ah-Xb-edq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -266,6 +266,7 @@
 		2599740712EB966400816331 /* RMSpatialCloudMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSpatialCloudMapSource.h; sourceTree = "<group>"; };
 		2599740812EB966400816331 /* RMSpatialCloudMapSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSpatialCloudMapSource.m; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2AAB12DE18FB37EF002C5185 /* Philadelphia.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = Philadelphia.mbtiles; sourceTree = "<group>"; };
 		2B2BADD60FA3B45A00EE37AA /* marker-X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker-X.png"; path = "../marker-X.png"; sourceTree = "<group>"; };
 		2B2BD41D0F79A95500B8B9A7 /* README-static-library-build.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "README-static-library-build.rtf"; sourceTree = "<group>"; };
 		2B2BD41E0F79A95500B8B9A7 /* routeme.doxygen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = routeme.doxygen; sourceTree = "<group>"; };
@@ -712,6 +713,7 @@
 		B83E67570E80F3FB001663B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2AAB12DE18FB37EF002C5185 /* Philadelphia.mbtiles */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				B86F26E10E877802007A3773 /* DesktopMapView-Info.plist */,
 				2BF307910F8AC5C0007014EE /* RM Unit Tests-Info.plist */,

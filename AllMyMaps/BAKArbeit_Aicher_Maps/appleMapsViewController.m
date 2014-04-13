@@ -25,6 +25,10 @@
     
     self.fhTWAnnotationIsSet = NO;
     
+    self.appleMapView.showsBuildings = YES;
+    
+    self.appleMapView.showsPointsOfInterest = YES;
+    
     [self addFHTWAnnotation];
 //    [self addUserAnnotation];
     
