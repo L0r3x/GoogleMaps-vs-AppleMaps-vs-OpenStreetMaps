@@ -11,6 +11,9 @@
 @interface appleMapsViewController ()
 
 @property (nonatomic) BOOL fhTWAnnotationIsSet;
+@property (nonatomic) BOOL activityStarted;
+
+@property (nonatomic, strong) NSDate* startDate;
 
 @end
 
@@ -21,6 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!self.activityStarted) {
+        self.activityStarted = YES;
+        self.startDate = [NSDate date];
+    }
     [self.appleMapView setDelegate:self];
     
     self.fhTWAnnotationIsSet = NO;
@@ -53,36 +60,6 @@
 
     [self.appleMapView addAnnotation:fHTW];
 }
-
-#warning funktioniert ned!!!
-
-//-(void) addUserAnnotation
-//{
-//    
-//    MKPointAnnotation *userAnnotation = [[MKPointAnnotation alloc] init];
-//    userAnnotation.coordinate = self.appleMapView.userLocation.location.coordinate;
-//    //Reverse Geocoding Part
-//    CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:userAnnotation.coordinate.latitude longitude:userAnnotation.coordinate.longitude];
-//    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-//    [geocoder reverseGeocodeLocation:tempLocation completionHandler:
-//     ^(NSArray* placemarks, NSError* error){
-//         if ([placemarks count] > 0)
-//         {
-//             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//             NSLog(@" %@",placemark.addressDictionary);
-//             
-//             streetName = [placemark.addressDictionary objectForKey:@"Street"];
-//             subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
-//             
-//             NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@, %@ %@", streetName, [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
-//             
-//             userAnnotation.title = @"You are currently at: ";
-//             userAnnotation.subtitle = helperForSubtitleInfos;
-//             
-//             [self.appleMapView addAnnotation:userAnnotation];
-//         }
-//     }];
-//}
 
 -(void) addGestureRecognizerToAppleMapView
 {
@@ -144,8 +121,7 @@
             for (MKMapItem *item in response.mapItems)
             {
                 [_matchingItems addObject:item];
-                MKPointAnnotation *annotation =
-                [[MKPointAnnotation alloc]init];
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
                 annotation.coordinate = item.placemark.coordinate;
                 annotation.title = item.name;
                 [self.appleMapView addAnnotation:annotation];
@@ -169,7 +145,7 @@
     if([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    static NSString *identifier = @"myAnnotation";
+    static NSString *identifier = @"fhTW";
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.appleMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
     if (!annotationView)
     {
@@ -200,9 +176,49 @@
     return annotationView;
 }
 
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
+        MKPointAnnotation *toAdd = [[MKPointAnnotation alloc] init];
+        
+        CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:tempLocation completionHandler:
+         ^(NSArray* placemarks, NSError* error){
+             if ([placemarks count] > 0)
+             {
+                 CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                 NSLog(@" %@",placemark.addressDictionary);
+                 
+                 streetName = [placemark.addressDictionary objectForKey:@"Street"];
+                 subtitleInfos = [placemark.addressDictionary objectForKey:@"City"];
+                 
+                 NSString *helperForSubtitleInfos = [NSString stringWithFormat:@"%@ %@", [placemark.addressDictionary objectForKey:@"ZIP"], subtitleInfos];
+                 
+                 toAdd.title = streetName;
+                 toAdd.subtitle = helperForSubtitleInfos;
+                 
+                 self.fhTWAnnotationIsSet = NO;
+                 [self.appleMapView addAnnotation:toAdd];
+             }
+         }];
+        [annotationView setDragState:MKAnnotationViewDragStateNone animated:YES];
+    }
+
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (self.activityStarted) {
+        self.activityStarted = NO;
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
+        NSLog(@"Duration of AppleMapsLoad: %fs", time);
+    }
     
     //center of Map is User Location
     [self.appleMapView setCenterCoordinate:self.appleMapView.userLocation.location.coordinate animated:YES];

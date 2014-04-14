@@ -10,6 +10,9 @@
 #import "RMPath.h"
 
 @interface openStreetMapsViewController ()
+@property (nonatomic) BOOL activityStarted;
+
+@property (nonatomic, strong) NSDate* startDate;
 
 @end
 
@@ -20,6 +23,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!self.activityStarted) {
+        self.activityStarted = YES;
+        self.startDate = [NSDate date];
+    }
 //    [RMMapView class];
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -62,6 +69,15 @@
     currentUserLocationPosition.longitude = 16.378;
     currentUserLocationMarker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"userMarker"]];
     [openStreetMapView.contents.markerManager addMarker:currentUserLocationMarker AtLatLong:currentUserLocationPosition];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (self.activityStarted) {
+        self.activityStarted = NO;
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
+        NSLog(@"Duration of OpenStreetMapLoad: %fs", time);
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation

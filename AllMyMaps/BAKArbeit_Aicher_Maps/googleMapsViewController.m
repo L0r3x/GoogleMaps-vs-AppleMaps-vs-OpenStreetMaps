@@ -9,6 +9,9 @@
 #import "googleMapsViewController.h"
 
 @interface googleMapsViewController()
+@property (nonatomic) BOOL activityStarted;
+
+@property (nonatomic, strong) NSDate* startDate;
 @end
 
 @implementation googleMapsViewController
@@ -19,6 +22,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!self.activityStarted) {
+        self.activityStarted = YES;
+        self.startDate = [NSDate date];
+    }
     
     //Is only for GoogleMaps to initialize the camera, in real the camera zooms immediatly to the users location
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
@@ -64,6 +71,15 @@
     [self.googleMapsView removeObserver:self
                   forKeyPath:@"myLocation"
                      context:NULL];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (self.activityStarted) {
+        self.activityStarted = NO;
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
+        NSLog(@"Duration of GoogleMapsLoad: %fs", time);
+    }
 }
 
 #pragma mark - set camera to user location
