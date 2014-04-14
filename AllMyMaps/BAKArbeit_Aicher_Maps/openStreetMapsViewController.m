@@ -143,6 +143,8 @@
         openStreetMapView.contents.tileSource = [[RMMBTilesTileSource alloc] initWithTileSetURL:tileSetUrl];
         [openStreetMapView.contents moveToLatLong:CLLocationCoordinate2DMake(39.949721, -75.150261)];
         openStreetSegment.hidden = YES;
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Please restart the app. OfflineMaps is not working at the moment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
     }
 }
 @end
